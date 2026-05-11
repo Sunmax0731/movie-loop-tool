@@ -33,6 +33,39 @@
         </div>
       </section>
 
+      <section class="field">
+        <label for="loopMode">Loop mode</label>
+        <select id="loopMode">
+          <option value="count">Use replay count</option>
+          <option value="infinite">Infinite loop</option>
+          <option value="stop-current">Stop after current run</option>
+        </select>
+      </section>
+
+      <section class="field">
+        <label for="targetVideo">Target video</label>
+        <select id="targetVideo">
+          <option value="all">All detected videos</option>
+        </select>
+      </section>
+
+      <section class="field">
+        <label class="check-line">
+          <input id="segmentEnabled" type="checkbox">
+          <span>A-B repeat</span>
+        </label>
+        <div class="segment-line">
+          <label for="segmentStart">
+            <span>Start</span>
+            <input id="segmentStart" type="number" min="0" step="0.1" inputmode="decimal" value="0">
+          </label>
+          <label for="segmentEnd">
+            <span>End</span>
+            <input id="segmentEnd" type="number" min="0" step="0.1" inputmode="decimal">
+          </label>
+        </div>
+      </section>
+
       <section class="status-grid" aria-live="polite">
         <div>
           <span class="metric-label">Detected videos</span>
@@ -43,6 +76,8 @@
           <strong id="loopedCount">0</strong>
         </div>
       </section>
+
+      <p id="lastError" class="last-error" aria-live="polite"></p>
 
       <footer class="actions">
         <button id="resetCounts" type="button">Reset count</button>

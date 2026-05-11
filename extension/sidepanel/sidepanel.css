@@ -3,7 +3,7 @@
 * { box-sizing: border-box; }
 body { margin:0; min-width:280px; background:var(--bg); color:var(--text); }
 .panel { display:grid; gap:16px; padding:16px; }
-.panel-header,.control-row,.actions,.number-line { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.panel-header,.control-row,.actions,.number-line,.check-line,.segment-line { display:flex; align-items:center; justify-content:space-between; gap:12px; }
 h1 { margin:0; font-size:18px; line-height:1.2; }
 .state-chip { border:1px solid var(--line); border-radius:999px; padding:4px 8px; color:var(--muted); font-size:12px; white-space:nowrap; }
 .state-chip.is-active { border-color:var(--accent); color:var(--accent); }
@@ -22,6 +22,13 @@ h1 { margin:0; font-size:18px; line-height:1.2; }
 .number-line button { width:40px; font-size:18px; }
 .actions button { padding:0 10px; font-size:13px; }
 .number-line button:hover,.actions button:hover { border-color:var(--accent); }
-input[type="number"] { width:100%; min-width:0; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--text); font:inherit; font-size:18px; min-height:36px; padding:0 10px; }
+input[type="number"],select { width:100%; min-width:0; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--text); font:inherit; min-height:36px; padding:0 10px; }
+input[type="number"] { font-size:18px; }
+select { font-size:14px; }
+.check-line { justify-content:flex-start; color:var(--text); font-size:14px; }
+.check-line input { width:16px; height:16px; }
+.segment-line label { display:grid; gap:4px; width:100%; color:var(--muted); font-size:12px; }
+.segment-line input { font-size:14px; }
 .status-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .status-grid strong { display:block; margin-top:4px; font-size:24px; }
+.last-error { min-height:18px; margin:0; color:var(--danger); font-size:12px; overflow-wrap:anywhere; }

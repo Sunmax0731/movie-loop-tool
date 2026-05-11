@@ -1,4 +1,4 @@
-# Design
+# 設計
 
 ## UI 方針
 
@@ -6,11 +6,15 @@ Side Panel は小さな操作面として扱い、現在状態の確認と設定
 
 ## 画面要素
 
-- Header: `Movie Loop Tool` と接続状態。
-- Toggle: `Auto loop` の ON/OFF。
-- Count: `Additional replays` の数値入力、減少ボタン、増加ボタン。
-- Status: 検出動画数と完了済み追加リプレイ数。
-- Actions: `Reset count` と `Refresh`。
+- ヘッダー: `Movie Loop Tool` と接続状態。
+- 切り替え: `Auto loop` の ON/OFF。
+- 回数: `Additional replays` の数値入力、減少ボタン、増加ボタン。
+- モード: `Loop mode` で追加回数、無限ループ、現在の周回で停止を選択。
+- 対象: `Target video` で全動画または個別動画を選択。
+- 区間: `A-B repeat`、開始秒、終了秒。
+- 状態: 検出動画数と完了済み追加リプレイ数。
+- 失敗表示: 最後の `video.play()` 失敗理由。
+- 操作: `Reset count` と `Refresh`。
 
 ## 状態表示
 
@@ -23,5 +27,10 @@ Side Panel は小さな操作面として扱い、現在状態の確認と設定
 ## アクセシビリティ
 
 - 数値入力は `min="1"`、`max="99"`、`step="1"` を指定する。
-- 状態表示は `aria-live="polite"` の領域内に置く。
-- Toggle と増減ボタンには意味のある `aria-label` を付ける。
+- A-B repeat の秒数入力は `step="0.1"` を指定する。
+- 状態表示は `aria-live="polite"` の領域に置く。
+- 切り替えと増減ボタンには意味のある `aria-label` を付ける。
+
+## 操作の分離
+
+Side Panel 起動時は保存済み設定を表示し、active tab へ `MOVIE_LOOP_GET_STATUS` を送るだけにします。設定の保存と `MOVIE_LOOP_APPLY_SETTINGS` は、ユーザーが UI を変更したときだけ実行します。

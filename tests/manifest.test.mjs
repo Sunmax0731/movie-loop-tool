@@ -10,6 +10,11 @@ test("manifest is MV3 and has side panel contract", () => {
   assert.equal(manifest.background.type, "module");
 });
 
+test("manifest exposes a keyboard command for no-panel toggling", () => {
+  assert.equal(manifest.commands["toggle-auto-loop"].suggested_key.default, "Alt+Shift+L");
+  assert.equal(typeof manifest.commands["toggle-auto-loop"].description, "string");
+});
+
 test("manifest keeps permissions bounded for video loop behavior", () => {
   assert.deepEqual(manifest.permissions.sort(), ["activeTab", "sidePanel", "storage"].sort());
   assert.deepEqual(manifest.host_permissions.sort(), ["http://*/*", "https://*/*"].sort());

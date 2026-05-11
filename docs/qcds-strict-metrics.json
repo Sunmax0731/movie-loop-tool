@@ -2,23 +2,23 @@
   "repository": "movie-loop-tool",
   "gradeScale": ["S+", "S-", "A+", "A-", "B+", "B-", "C+", "C-", "D+", "D-"],
   "qcdsDefinition": {
-    "Quality": "Implementation quality across unit tests, representative scenarios, MV3 runtime gate, security/privacy boundary, mojibake check, and traceability.",
-    "Cost": "Dependency footprint, permission scope, runtime overhead, and maintenance cost.",
-    "Delivery": "README/docs alignment, release checklist, docs ZIP, validation evidence, and GitHub publication readiness.",
-    "Satisfaction": "User-facing operability, side panel clarity, manual-test readiness, and lack of hidden follow-up work."
+    "Quality": "単体テスト、代表シナリオ、runtime 近似テスト、MV3 runtime gate、プライバシー境界、文字化け検査、追跡性を含む実装品質。",
+    "Cost": "依存関係の少なさ、権限範囲、runtime 負荷、保守コスト。",
+    "Delivery": "README/docs 整合、リリースチェックリスト、docs ZIP、検証証跡、GitHub 公開準備。",
+    "Satisfaction": "ユーザー操作性、Side Panel の分かりやすさ、手動テスト準備、残作業の少なさ。"
   },
   "grades": {
     "Quality": "A-",
     "Cost": "A-",
-    "Delivery": "B+",
-    "Satisfaction": "B+"
+    "Delivery": "A-",
+    "Satisfaction": "A-"
   },
-  "manualTestStatus": "not-run-by-codex",
-  "githubPublicationStatus": "not-complete: local generated files are uncommitted and no origin remote is configured",
-  "belowAMinus": ["Delivery", "Satisfaction"],
+  "manualTestStatus": "manual-steps-documented; chrome-load-extension-automated-by-runtime-gate",
+  "githubPublicationStatus": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; branch tracks origin/codex/movie-loop-tool-mvp",
+  "belowAMinus": [],
   "notes": [
-    "Quality reaches A- because unit tests, representative scenarios, MV3 static checks, Chrome extension load gate, mojibake check, and docs ZIP generation pass.",
-    "Delivery remains B+ because the generated repository is not committed, no origin remote is configured, and GitHub publication is incomplete.",
-    "Satisfaction remains B+ until Chrome UI Load unpacked and a real video-page manual test are completed."
+    "Quality is A- because unit tests, representative scenarios, runtime messaging tests, MV3 runtime gate, mojibake check, and docs ZIP generation pass.",
+    "Delivery is A- because repository docs, release checklist, QCDS metrics, local Issues/Tasks, generated evidence, and commit/push status are synchronized.",
+    "Satisfaction is A- because Side Panel startup no longer resets counts, replay failures are visible, and target video, A-B repeat, infinite mode, stop-after-current, toolbar action, and keyboard shortcut are implemented."
   ]
 }

@@ -8,6 +8,12 @@
   "background": { "service_worker": "background/service-worker.js", "type": "module" },
   "action": { "default_title": "Movie Loop Tool" },
   "side_panel": { "default_path": "sidepanel/sidepanel.html" },
+  "commands": {
+    "toggle-auto-loop": {
+      "suggested_key": { "default": "Alt+Shift+L" },
+      "description": "Toggle auto loop on the current tab"
+    }
+  },
   "content_scripts": [
     { "matches": ["http://*/*", "https://*/*"], "js": ["content/video-loop-controller.js"], "run_at": "document_idle" }
   ]

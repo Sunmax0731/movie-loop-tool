@@ -3,7 +3,9 @@
   "scenarios": [
     { "id": "disabled-does-not-loop", "settings": { "enabled": false, "loopCount": 3 }, "endedEvents": 2, "expectedReplays": 0 },
     { "id": "loops-exact-count", "settings": { "enabled": true, "loopCount": 2 }, "endedEvents": 4, "expectedReplays": 2 },
-    { "id": "clamps-invalid-count", "settings": { "enabled": true, "loopCount": 250 }, "expectedNormalized": { "enabled": true, "loopCount": 99 } },
-    { "id": "stores-settings-only", "settings": { "enabled": true, "loopCount": 4, "url": "https://example.com/watch", "currentSrc": "https://cdn.example.com/movie.mp4" }, "expectedStoredKeys": ["enabled", "loopCount"] }
+    { "id": "clamps-invalid-count", "settings": { "enabled": true, "loopCount": 250 }, "expectedNormalized": { "enabled": true, "loopCount": 99, "loopMode": "count", "targetVideoId": "all", "segment": { "enabled": false, "start": 0, "end": null } } },
+    { "id": "infinite-mode-keeps-replaying", "settings": { "enabled": true, "loopCount": 1, "loopMode": "infinite" }, "endedEvents": 4, "expectedReplays": 4 },
+    { "id": "stop-current-mode-does-not-start-next-replay", "settings": { "enabled": true, "loopCount": 99, "loopMode": "stop-current" }, "endedEvents": 2, "expectedReplays": 0 },
+    { "id": "stores-settings-only", "settings": { "enabled": true, "loopCount": 4, "loopMode": "infinite", "targetVideoId": "video-3", "segment": { "enabled": true, "start": 5, "end": 9 }, "url": "https://example.com/watch", "currentSrc": "https://cdn.example.com/movie.mp4" }, "expectedStoredKeys": ["enabled", "loopCount"] }
   ]
 }

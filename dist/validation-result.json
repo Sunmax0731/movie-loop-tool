@@ -4,13 +4,10 @@
   "qcds": {
     "Quality": "A-",
     "Cost": "A-",
-    "Delivery": "B+",
-    "Satisfaction": "B+"
+    "Delivery": "A-",
+    "Satisfaction": "A-"
   },
-  "belowAMinus": [
-    "Delivery",
-    "Satisfaction"
-  ],
+  "belowAMinus": [],
   "platformRuntimeGate": {
     "product": "movie-loop-tool",
     "platformType": "chrome-extension",
@@ -35,11 +32,11 @@
     },
     "tempProfileCleanup": {
       "status": "removed",
-      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-dvDoRt"
+      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-5VJ6Gp"
     }
   },
-  "representativeScenarios": 4,
+  "representativeScenarios": 6,
   "docsZip": "dist/movie-loop-tool-docs.zip",
-  "manualTest": "not-run-by-codex",
-  "githubPublication": "not-complete: local generated files are uncommitted and no origin remote is configured"
+  "manualTest": "manual-steps-documented; chrome-load-extension-automated-by-runtime-gate",
+  "githubPublication": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; branch tracks origin/codex/movie-loop-tool-mvp"
 }

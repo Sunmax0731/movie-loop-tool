@@ -1,28 +1,42 @@
-# Architecture
+# アーキテクチャ
 
 ## 構成
 
-- `src/loop-policy.mjs`: 設定正規化、追加リプレイ可否、保存対象の純粋ロジック。
-- `extension/manifest.json`: MV3 manifest、権限、background、content script、side panel 定義。
-- `extension/background/service-worker.js`: 初期設定と action クリック時の side panel 起動。
-- `extension/content/video-loop-controller.js`: `<video>` 検出、DOM 監視、`ended` event、再生制御、side panel との messaging。
-- `extension/sidepanel/`: 設定 UI、`chrome.storage.sync`、active tab messaging。
-- `tests/`: 主要判定と manifest 契約の unit tests。
-- `tools/`: 代表シナリオ、runtime gate、docs ZIP、mojibake、QCDS 検証。
+- `src/loop-policy.mjs`: 設定正規化、ループ判定、保存キー制限などの主要判定ロジック。
+- `extension/manifest.json`: Manifest V3 の拡張定義、権限、content script、Side Panel、commands。
+- `extension/content/video-loop-controller.js`: DOM 監視、動画状態管理、Chrome runtime message の受信。
+- `extension/sidepanel/*`: ユーザー操作 UI と active tab への message 送信。
+- `extension/background/service-worker.js`: 初期保存値、toolbar action、keyboard command、badge 更新。
+- `tests/`: Node 標準テスト。content script は疑似 DOM / Chrome API で runtime に近い形を検証する。
+- `tools/`: 代表シナリオ、runtime gate、docs ZIP、mojibake check、QCDS guard。
 
-## 責務境界
+## データ境界
 
-主要な判断は `src/loop-policy.mjs` でテスト可能な形に置きます。Chrome API、DOM、storage、messaging、再生操作は `extension/` に閉じ、ブラウザ実行環境の制約を外へ漏らさない構成にします。
+永続保存する値は `enabled` と `loopCount` だけです。対象動画、A-B repeat、ループモードは content script の runtime state として扱い、ページを離れたら破棄します。これにより、動画 URL、ページ URL、タイトル、再生履歴、視聴内容を保存しません。
 
-## 権限
+## Message Flow
 
-- `activeTab`: 現在タブへ side panel から message を送るため。
-- `storage`: `enabled` と `loopCount` を保存するため。
-- `sidePanel`: Chrome side panel を使うため。
-- `http://*/*`, `https://*/*`: 通常 Web ページの video 要素へ content script を入れるため。
+1. Side Panel は active tab を取得する。
+2. 状態確認時は `MOVIE_LOOP_GET_STATUS` を送る。
+3. 設定変更時は永続保存キーだけを `chrome.storage.sync` に保存し、runtime 設定全体を `MOVIE_LOOP_APPLY_SETTINGS` で送る。
+4. content script は設定を正規化し、必要な場合だけ完了済み回数をリセットする。
+5. `Reset count` は `MOVIE_LOOP_RESET_COUNTS` を送る。
+6. service worker は toolbar action / keyboard command で保存済み `enabled` を反転し、可能な場合は active tab に反映する。
 
-`tabs` permission は使いません。
+## 動画検出
 
-## プライバシー境界
+- 通常 DOM は `querySelectorAll("video")` で検出する。
+- SPA 遷移や後続追加は `MutationObserver` で再走査する。
+- open Shadow DOM は `shadowRoot` を再帰的に走査する。
+- 同一オリジン iframe は `contentDocument` を走査する。
+- cross-origin iframe はブラウザ制約で読み取れないため対象外とする。
 
-保存するデータは `enabled` と `loopCount` のみです。ページ URL、動画 URL、タイトル、視聴履歴、ページ内容、動画内容は保存しません。runtime gate と unit tests でも保存対象のキーを確認します。
+## Runtime Gate
+
+`tools/platform-runtime-gate.mjs` は次を確認します。
+
+- `extension/manifest.json` が Manifest V3 である。
+- 必要な権限が存在し、`tabs` 権限を使っていない。
+- manifest 参照ファイルが存在する。
+- content script が `http://*/*` と `https://*/*` に限定されている。
+- Chrome または Edge を `--load-extension` 付きで起動できる。

@@ -17,8 +17,25 @@
       "pass": true,
       "normalized": {
         "enabled": true,
-        "loopCount": 99
+        "loopCount": 99,
+        "loopMode": "count",
+        "targetVideoId": "all",
+        "segment": {
+          "enabled": false,
+          "start": 0,
+          "end": null
+        }
       }
+    },
+    {
+      "id": "infinite-mode-keeps-replaying",
+      "pass": true,
+      "replays": 4
+    },
+    {
+      "id": "stop-current-mode-does-not-start-next-replay",
+      "pass": true,
+      "replays": 0
     },
     {
       "id": "stores-settings-only",

@@ -3,6 +3,6 @@
   "title": "Movie Loop Tool",
   "platformType": "chrome-extension",
   "manifestPath": "extension/manifest.json",
-  "gate": "Verify the MV3 manifest and load the extension with Chrome or Edge using --load-extension.",
-  "manualChromeUiCheck": "Open chrome://extensions, enable Developer mode, use Load unpacked for the extension directory, then test on a normal video page."
+  "gate": "MV3 manifest を検査し、Chrome または Edge を --load-extension 付きで起動して拡張機能を読み込む。",
+  "manualChromeUiCheck": "chrome://extensions を開き、Developer mode を有効にし、Load unpacked で拡張機能ディレクトリを指定してから通常の動画ページでテストする。詳細は docs/manual-test.md を参照する。"
 }
