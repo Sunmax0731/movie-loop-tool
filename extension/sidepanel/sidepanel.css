@@ -1,0 +1,27 @@
+:root { color-scheme: light dark; --bg:#f7f8fb; --surface:#fff; --text:#1f2933; --muted:#637083; --line:#d6dbe5; --accent:#1f7a68; --danger:#a13d2d; font-family:"Segoe UI",system-ui,sans-serif; }
+@media (prefers-color-scheme: dark) { :root { --bg:#171a1f; --surface:#20252d; --text:#f1f5f9; --muted:#a9b4c4; --line:#343c49; --accent:#55c2a7; --danger:#f08a78; } }
+* { box-sizing: border-box; }
+body { margin:0; min-width:280px; background:var(--bg); color:var(--text); }
+.panel { display:grid; gap:16px; padding:16px; }
+.panel-header,.control-row,.actions,.number-line { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+h1 { margin:0; font-size:18px; line-height:1.2; }
+.state-chip { border:1px solid var(--line); border-radius:999px; padding:4px 8px; color:var(--muted); font-size:12px; white-space:nowrap; }
+.state-chip.is-active { border-color:var(--accent); color:var(--accent); }
+.state-chip.is-error { border-color:var(--danger); color:var(--danger); }
+.control-row,.field,.status-grid { border:1px solid var(--line); border-radius:8px; background:var(--surface); padding:14px; }
+.label,.field label,.metric-label { display:block; color:var(--muted); font-size:12px; }
+.sub-value { margin:4px 0 0; font-size:20px; font-weight:700; }
+.switch { position:relative; width:52px; height:30px; flex:0 0 auto; }
+.switch input { opacity:0; }
+.slider { position:absolute; inset:0; cursor:pointer; background:var(--line); border-radius:999px; transition:.18s ease; }
+.slider::before { position:absolute; content:""; width:22px; height:22px; left:4px; top:4px; background:var(--surface); border-radius:50%; transition:.18s ease; box-shadow:0 1px 4px rgba(0,0,0,.22); }
+.switch input:checked + .slider { background:var(--accent); }
+.switch input:checked + .slider::before { transform:translateX(22px); }
+.field { display:grid; gap:8px; }
+.number-line button,.actions button { border:1px solid var(--line); border-radius:6px; min-height:36px; background:var(--surface); color:var(--text); font:inherit; cursor:pointer; }
+.number-line button { width:40px; font-size:18px; }
+.actions button { padding:0 10px; font-size:13px; }
+.number-line button:hover,.actions button:hover { border-color:var(--accent); }
+input[type="number"] { width:100%; min-width:0; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--text); font:inherit; font-size:18px; min-height:36px; padding:0 10px; }
+.status-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.status-grid strong { display:block; margin-top:4px; font-size:24px; }

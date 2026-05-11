@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Loop Tool</title>
+    <link rel="stylesheet" href="sidepanel.css">
+  </head>
+  <body>
+    <main class="panel">
+      <header class="panel-header">
+        <h1>Movie Loop Tool</h1>
+        <span id="connectionState" class="state-chip">Checking</span>
+      </header>
+
+      <section class="control-row">
+        <div>
+          <label for="enabledToggle" class="label">Auto loop</label>
+          <p class="sub-value" id="enabledText">OFF</p>
+        </div>
+        <label class="switch">
+          <input id="enabledToggle" type="checkbox" aria-label="Auto loop">
+          <span class="slider"></span>
+        </label>
+      </section>
+
+      <section class="field">
+        <label for="loopCount">Additional replays</label>
+        <div class="number-line">
+          <button id="decreaseCount" type="button" aria-label="Decrease replay count">-</button>
+          <input id="loopCount" type="number" min="1" max="99" step="1" inputmode="numeric">
+          <button id="increaseCount" type="button" aria-label="Increase replay count">+</button>
+        </div>
+      </section>
+
+      <section class="status-grid" aria-live="polite">
+        <div>
+          <span class="metric-label">Detected videos</span>
+          <strong id="videoCount">0</strong>
+        </div>
+        <div>
+          <span class="metric-label">Completed replays</span>
+          <strong id="loopedCount">0</strong>
+        </div>
+      </section>
+
+      <footer class="actions">
+        <button id="resetCounts" type="button">Reset count</button>
+        <button id="refreshStatus" type="button">Refresh</button>
+      </footer>
+    </main>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

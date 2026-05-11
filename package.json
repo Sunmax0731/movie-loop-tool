@@ -1,0 +1,16 @@
+{
+  "name": "movie-loop-tool",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Chrome MV3 extension that loops videos on the current page with an on/off switch and configurable replay count.",
+  "scripts": {
+    "test": "node tests/run-unit-tests.mjs && node tools/representative-scenarios.mjs && node tools/platform-runtime-gate.mjs && node tools/docs-zip.mjs && node tools/mojibake-check.mjs && node tools/closed-alpha-guard.mjs",
+    "validate": "npm test",
+    "platform:gate": "node tools/platform-runtime-gate.mjs",
+    "docs:zip": "node tools/docs-zip.mjs",
+    "qcds:guard": "node tools/closed-alpha-guard.mjs"
+  },
+  "keywords": ["chrome-extension", "manifest-v3", "video-loop", "side-panel"],
+  "license": "MIT"
+}

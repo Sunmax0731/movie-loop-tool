@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Movie Loop Tool",
+  "version": "0.1.0",
+  "description": "Loop videos on the current page with an on/off switch and configurable replay count.",
+  "permissions": ["activeTab", "storage", "sidePanel"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background/service-worker.js", "type": "module" },
+  "action": { "default_title": "Movie Loop Tool" },
+  "side_panel": { "default_path": "sidepanel/sidepanel.html" },
+  "content_scripts": [
+    { "matches": ["http://*/*", "https://*/*"], "js": ["content/video-loop-controller.js"], "run_at": "document_idle" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "product": "movie-loop-tool",
+  "scenarios": [
+    { "id": "disabled-does-not-loop", "settings": { "enabled": false, "loopCount": 3 }, "endedEvents": 2, "expectedReplays": 0 },
+    { "id": "loops-exact-count", "settings": { "enabled": true, "loopCount": 2 }, "endedEvents": 4, "expectedReplays": 2 },
+    { "id": "clamps-invalid-count", "settings": { "enabled": true, "loopCount": 250 }, "expectedNormalized": { "enabled": true, "loopCount": 99 } },
+    { "id": "stores-settings-only", "settings": { "enabled": true, "loopCount": 4, "url": "https://example.com/watch", "currentSrc": "https://cdn.example.com/movie.mp4" }, "expectedStoredKeys": ["enabled", "loopCount"] }
+  ]
+}

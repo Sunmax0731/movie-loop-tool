@@ -1,0 +1,47 @@
+{
+  "product": "movie-loop-tool",
+  "result": "passed",
+  "qcds": {
+    "Quality": "A-",
+    "Cost": "A-",
+    "Delivery": "B+",
+    "Satisfaction": "B+"
+  },
+  "belowAMinus": [
+    "Delivery",
+    "Satisfaction"
+  ],
+  "platformRuntimeGate": {
+    "product": "movie-loop-tool",
+    "platformType": "chrome-extension",
+    "pass": true,
+    "method": "mv3-manifest-and-chrome-load-extension",
+    "manualTest": "not-run-by-codex",
+    "manifest": "extension/manifest.json",
+    "manifestVersion": 3,
+    "chromeExecutable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "extensionLoad": "passed",
+    "staticChecks": {
+      "pass": true,
+      "requiredFiles": [
+        "sidepanel/sidepanel.html",
+        "background/service-worker.js",
+        "content/video-loop-controller.js"
+      ],
+      "contentMatches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    },
+    "tempProfileCleanup": {
+      "status": "removed",
+      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-dvDoRt"
+    }
+  },
+  "representativeScenarios": 4,
+  "docsZip": "dist/movie-loop-tool-docs.zip",
+  "manualTest": "not-run-by-codex",
+  "githubPublication": "not-complete: local generated files are uncommitted and no origin remote is configured",
+  "releaseReadiness": "blocked-items-documented",
+  "generatedAt": "2026-05-11T01:17:58.001Z"
+}

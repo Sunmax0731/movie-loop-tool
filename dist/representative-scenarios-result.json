@@ -1,0 +1,32 @@
+{
+  "product": "movie-loop-tool",
+  "result": "passed",
+  "scenarios": [
+    {
+      "id": "disabled-does-not-loop",
+      "pass": true,
+      "replays": 0
+    },
+    {
+      "id": "loops-exact-count",
+      "pass": true,
+      "replays": 2
+    },
+    {
+      "id": "clamps-invalid-count",
+      "pass": true,
+      "normalized": {
+        "enabled": true,
+        "loopCount": 99
+      }
+    },
+    {
+      "id": "stores-settings-only",
+      "pass": true,
+      "storedKeys": [
+        "enabled",
+        "loopCount"
+      ]
+    }
+  ]
+}

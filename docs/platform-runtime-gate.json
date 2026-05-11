@@ -1,0 +1,8 @@
+{
+  "product": "movie-loop-tool",
+  "title": "Movie Loop Tool",
+  "platformType": "chrome-extension",
+  "manifestPath": "extension/manifest.json",
+  "gate": "Verify the MV3 manifest and load the extension with Chrome or Edge using --load-extension.",
+  "manualChromeUiCheck": "Open chrome://extensions, enable Developer mode, use Load unpacked for the extension directory, then test on a normal video page."
+}

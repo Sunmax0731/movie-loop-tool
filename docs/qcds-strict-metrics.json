@@ -1,0 +1,24 @@
+{
+  "repository": "movie-loop-tool",
+  "gradeScale": ["S+", "S-", "A+", "A-", "B+", "B-", "C+", "C-", "D+", "D-"],
+  "qcdsDefinition": {
+    "Quality": "Implementation quality across unit tests, representative scenarios, MV3 runtime gate, security/privacy boundary, mojibake check, and traceability.",
+    "Cost": "Dependency footprint, permission scope, runtime overhead, and maintenance cost.",
+    "Delivery": "README/docs alignment, release checklist, docs ZIP, validation evidence, and GitHub publication readiness.",
+    "Satisfaction": "User-facing operability, side panel clarity, manual-test readiness, and lack of hidden follow-up work."
+  },
+  "grades": {
+    "Quality": "A-",
+    "Cost": "A-",
+    "Delivery": "B+",
+    "Satisfaction": "B+"
+  },
+  "manualTestStatus": "not-run-by-codex",
+  "githubPublicationStatus": "not-complete: local generated files are uncommitted and no origin remote is configured",
+  "belowAMinus": ["Delivery", "Satisfaction"],
+  "notes": [
+    "Quality reaches A- because unit tests, representative scenarios, MV3 static checks, Chrome extension load gate, mojibake check, and docs ZIP generation pass.",
+    "Delivery remains B+ because the generated repository is not committed, no origin remote is configured, and GitHub publication is incomplete.",
+    "Satisfaction remains B+ until Chrome UI Load unpacked and a real video-page manual test are completed."
+  ]
+}

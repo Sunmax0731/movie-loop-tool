@@ -1,0 +1,49 @@
+{
+  "product": "movie-loop-tool",
+  "result": "passed",
+  "zipPath": "dist/movie-loop-tool-docs.zip",
+  "bytes": 21623,
+  "includedRoots": [
+    "README.md",
+    "AGENTS.md",
+    "SKILL.md",
+    "TODO.md",
+    "package.json",
+    "extension/manifest.json",
+    "docs",
+    "samples"
+  ],
+  "requiredEntries": [
+    "README.md",
+    "AGENTS.md",
+    "SKILL.md",
+    "TODO.md",
+    "extension/manifest.json",
+    "docs/requirements.md",
+    "docs/specification.md",
+    "docs/architecture.md",
+    "docs/design.md",
+    "docs/manual-test.md",
+    "docs/qcds-evaluation.md",
+    "docs/qcds-strict-metrics.json",
+    "docs/release-checklist.md"
+  ],
+  "entries": [
+    "AGENTS.md",
+    "docs/architecture.md",
+    "docs/design.md",
+    "docs/manual-test.md",
+    "docs/platform-runtime-gate.json",
+    "docs/qcds-evaluation.md",
+    "docs/qcds-strict-metrics.json",
+    "docs/release-checklist.md",
+    "docs/requirements.md",
+    "docs/specification.md",
+    "extension/manifest.json",
+    "package.json",
+    "README.md",
+    "samples/representative-suite.json",
+    "SKILL.md",
+    "TODO.md"
+  ]
+}
