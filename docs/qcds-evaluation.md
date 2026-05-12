@@ -10,14 +10,22 @@ QCDS は次の完全一致値だけを使います。
 
 | 軸 | 評価 | 理由 |
 | --- | --- | --- |
-| Quality | A- | 単体テスト、代表シナリオ、runtime 近似テスト、MV3 runtime gate、文字化け検査、docs ZIP 生成が通る。`video.play()` 失敗の誤加算、Side Panel 起動時 reset、複数動画選択、A-B repeat、Shadow DOM 検出をテストで確認している。 |
+| Quality | A- | 単体テスト、代表シナリオ、runtime 近似テスト、文字化け検査、docs ZIP 生成、MV3 manifest / Side Panel control 静的検査、0011 のドキュメント実装整合性確認は通る。2026-05-12 20:30 JST の `npm test` 再確認で ChromeExtension runtime gate も `pass: true`、`extensionLoad: passed` になり、P0 の [`0012`](../Issues/0012-chrome-gui.md) は closed。 |
 | Cost | A- | 追加 npm 依存なし。権限は `activeTab`、`storage`、`sidePanel` と通常 Web ページ match に限定している。runtime 設定は保存せず、保守範囲を抑えている。 |
-| Delivery | A- | README、AGENTS、SKILL、TODO、docs、local Issues/Tasks、docs ZIP、validation evidence を同期している。`origin` は GitHub 公開リポジトリを指している。 |
-| Satisfaction | A- | Side Panel の起動だけで状態を壊さず、対象動画固定、A-B repeat、無限ループ、現在周回停止、toolbar / shortcut 操作を提供している。Chrome UI の最終目視手順は manual test に残している。 |
+| Delivery | A- | README、AGENTS、SKILL、TODO、docs、local Issues/Tasks、docs ZIP、validation evidence は同期済み。`origin` は GitHub 公開リポジトリを指し、default branch は現状の `codex/movie-loop-tool-mvp` を維持する。2026-05-12 20:30 JST の `gh auth status` は有効で、今回更新分は Git 書き込み前確認後に commit / push する。 |
+| Satisfaction | A- | Side Panel の起動だけで状態を壊さず、対象動画固定、A-B repeat、無限ループ、現在周回停止、toolbar / shortcut 操作、quick-toggle 時の Side Panel 同期、replay 失敗理由表示を提供している。対象動画ラベルは title / URL / ファイル名を使わない。配布直前の visible Chrome UI / 実動画ページ目視は GitHub #1 に分離して残す。 |
+
+## フォローアップ
+
+| 項目 | 状態 | 次アクション |
+| --- | --- | --- |
+| Chrome UI `Load unpacked` と実動画ページの最終目視 | 手順化済み / release manual validation | 配布直前に GitHub #1 と `docs/manual-test.md` の手順で人手確認する。 |
+| Runtime gate 失敗時の評価見直し | ルール化済み | ChromeExtension runtime gate が失敗または blocked の場合は Quality と Satisfaction を B+ 以下にする。 |
+| ローカル課題との追跡 | 完了 | `Issues/0008-qcds.md` と `Tasks/0008-qcds.md` を closed にし、TODO Work Items に紐づける。 |
 
 ## Runtime Gate ルール
 
-ChromeExtension runtime gate は「MV3 manifest と Chrome の拡張読み込みを確認する」ものです。Chrome 起動が環境制約で blocked の場合は未完了として扱い、Quality と Satisfaction は B+ 以下にします。
+ChromeExtension runtime gate は「MV3 manifest と Chrome の拡張読み込みを確認する」ものです。Chrome 起動が環境制約で blocked の場合は未完了として扱い、Quality と Satisfaction は B+ 以下にします。2026-05-12 20:30 JST の `npm test` では runtime gate が `pass: true`、`extensionLoad: passed` になりました。
 
 ## 証跡
 
@@ -28,9 +36,38 @@ ChromeExtension runtime gate は「MV3 manifest と Chrome の拡張読み込み
 - 文字化け検査: `node tools/mojibake-check.mjs`
 - QCDS guard: `node tools/closed-alpha-guard.mjs`
 
+## ドキュメント実装整合性確認 (2026-05-11 23:06 JST)
+
+| 対象 | 確認内容 | 結果 |
+| --- | --- | --- |
+| README | MV3 manifest、Side Panel、追加リプレイ回数 `1..99`、ループモード、対象動画固定、A-B repeat、toolbar / shortcut、保存キー制限を `extension/manifest.json`、`src/loop-policy.mjs`、`extension/content/video-loop-controller.js`、`extension/sidepanel/sidepanel.js` と照合した。 | 矛盾なし |
+| AGENTS / SKILL | `src/` と `extension/` の配置、保存キー `enabled` / `loopCount` の限定、runtime 設定、Side Panel 起動時の read-only refresh、`video.play()` 失敗時の未加算と表示が実装と一致することを確認した。 | 矛盾なし |
+| manual-test | `Load unpacked`、Side Panel 操作、unsupported page、対象動画固定、A-B repeat、無限ループ、現在周回停止、toolbar action / `Alt+Shift+L` の確認手順が現在の manifest / UI / messaging 実装で実行可能であることを確認した。 | 矛盾なし |
+
+この確認で 0010 の範囲に新規 TODO 化が必要な矛盾は見つからなかった。Chrome 起動 `EPERM`、Git index lock 作成権限、GitHub CLI 認証は当時のリリース準備 blocker として `0009` に記録した。その後 2026-05-12 19:55 JST の再確認で runtime gate と GitHub CLI 認証は解消済み。
+
+## ドキュメント実装整合性確認 (0011 / 2026-05-11 23:37 JST)
+
+| 対象 | 確認内容 | 結果 |
+| --- | --- | --- |
+| README | `extension/manifest.json`、`src/loop-policy.mjs`、`extension/content/video-loop-controller.js`、`extension/sidepanel/sidepanel.js`、`extension/background/service-worker.js` と照合し、MV3、Side Panel、追加リプレイ回数 `1..99`、ループモード、対象動画固定、A-B repeat、toolbar / shortcut、保存キー制限が一致することを確認した。 | 矛盾なし |
+| AGENTS.md | `src/` と `extension/` の責務分離、永続保存値 `enabled` / `loopCount` の限定、TODO 駆動、`npm test` の gate 構成が現在のリポジトリ構成と一致することを確認した。 | 矛盾なし |
+| SKILL.md | `loopMode` / `targetVideoId` / `segment` の runtime 設定、Side Panel 起動時の read-only refresh、`video.play()` reject 時の未加算と `lastError` 表示、同一オリジン iframe / open Shadow DOM の検出方針が実装と一致することを確認した。 | 矛盾なし |
+| manual-test | `Load unpacked`、Side Panel 操作、unsupported page、対象動画固定、A-B repeat、無限ループ、現在周回停止、toolbar action / `Alt+Shift+L` の確認手順が現在の manifest / UI / messaging 実装で実行可能であることを確認した。Chrome UI と実動画ページの最終目視は配布直前の人手確認として残す。 | 矛盾なし |
+
+この確認で 0011 の範囲に新規 TODO 化が必要な矛盾は見つからなかった。Task から Issue への相対リンク不一致は `Tasks/0011-issue.md` 内で修正し、0011 を closed にした。
+
 ## 公開状態
 
 - `git remote -v`: `origin` は `https://github.com/Sunmax0731/movie-loop-tool.git`。
+- GitHub default branch: `codex/movie-loop-tool-mvp` を現状維持する。
 - 現在ブランチ: `codex/movie-loop-tool-mvp`。
 - 追跡先: `origin/codex/movie-loop-tool-mvp`。
-- 今回変更の commit / push は最終検証後に実施済みとして扱う。
+- リリース準備 Work Item は、今回更新分を Git 書き込み前確認後に commit / push することを最終 gate とする。配布直前の Chrome UI / 実動画ページの最終目視は GitHub #1 に分離する。
+
+## 最新確認 (2026-05-12 20:30 JST)
+
+- `npm test`: 2026-05-12 20:30 JST に exit 0。単体テスト 19 件、代表シナリオ 6 件、ChromeExtension runtime gate、docs ZIP、mojibake 検査、QCDS guard は通過した。
+- Runtime gate: `dist/platform-runtime-gate-result.json` は `pass: true`、`method: mv3-manifest-and-chrome-load-extension`、`extensionLoad: passed`、`staticChecks.pass: true`。
+- Git staging: `git status --short --branch` と `.git/index.lock` の事前確認後、今回更新した release prep / QCDS 証跡を commit / push する。
+- GitHub CLI auth: 2026-05-12 20:30 JST の `gh auth status` で `Sunmax0731` の有効な認証を確認した。

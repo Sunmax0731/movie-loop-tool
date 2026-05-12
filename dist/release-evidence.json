@@ -28,17 +28,34 @@
       "contentMatches": [
         "http://*/*",
         "https://*/*"
-      ]
+      ],
+      "sidePanelControls": {
+        "status": "passed",
+        "requiredIds": [
+          "enabledToggle",
+          "loopCount",
+          "loopMode",
+          "targetVideo",
+          "segmentEnabled",
+          "segmentStart",
+          "segmentEnd",
+          "resetCounts",
+          "refreshStatus",
+          "lastError"
+        ]
+      }
     },
     "tempProfileCleanup": {
-      "status": "removed",
-      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-5VJ6Gp"
+      "status": "deferred",
+      "path": "\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE",
+      "code": "EPERM",
+      "message": "EPERM, Permission denied: \\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE '\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE'"
     }
   },
   "representativeScenarios": 6,
   "docsZip": "dist/movie-loop-tool-docs.zip",
-  "manualTest": "manual-steps-documented; chrome-load-extension-automated-by-runtime-gate",
-  "githubPublication": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; branch tracks origin/codex/movie-loop-tool-mvp",
+  "manualTest": "manual-steps-documented; chrome-load-extension-passed-by-runtime-gate; implementation P0 closed; final visible Chrome UI Load unpacked and real-video checks tracked separately in GitHub #1 before distribution",
+  "githubPublication": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; default branch remains codex/movie-loop-tool-mvp; branch tracks origin/codex/movie-loop-tool-mvp; gh auth status is valid for Sunmax0731; current evidence is synchronized for commit and push",
   "releaseReadiness": "ready-after-manual-test",
-  "generatedAt": "2026-05-11T04:22:00.900Z"
+  "generatedAt": "2026-05-12T11:40:20.090Z"
 }

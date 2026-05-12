@@ -36,6 +36,7 @@
 - `Additional replays`: `1..99` の数値入力と増減ボタン。
 - `Loop mode`: 追加回数、無限ループ、現在の周回で停止。
 - `Target video`: すべての検出動画または特定動画を選択。
+- 対象動画の選択肢は `Video N (current / duration)` 形式で表示し、title、動画 URL、ファイル名は表示しない。
 - `A-B repeat`: 開始秒、終了秒、ON/OFF。
 - `Detected videos`: content script が追跡している動画数。
 - `Completed replays`: 現在ページで完了した自動リプレイ回数の合計。

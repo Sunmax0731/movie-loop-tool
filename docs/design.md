@@ -11,6 +11,7 @@ Side Panel は小さな操作面として扱い、現在状態の確認と設定
 - 回数: `Additional replays` の数値入力、減少ボタン、増加ボタン。
 - モード: `Loop mode` で追加回数、無限ループ、現在の周回で停止を選択。
 - 対象: `Target video` で全動画または個別動画を選択。
+- 対象動画の表示名は `Video N (current / duration)` 形式にし、title、動画 URL、ファイル名は表示しない。
 - 区間: `A-B repeat`、開始秒、終了秒。
 - 状態: 検出動画数と完了済み追加リプレイ数。
 - 失敗表示: 最後の `video.play()` 失敗理由。

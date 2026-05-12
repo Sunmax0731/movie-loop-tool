@@ -11,6 +11,13 @@ test("side panel startup refreshes status without applying settings", () => {
   assert.doesNotMatch(sidePanelScript, /await saveAndApply\(\);/);
 });
 
+test("side panel observes quick-toggle storage changes without persisting runtime-only settings", () => {
+  assert.match(sidePanelScript, /chrome\.storage\.onChanged\.addListener/);
+  assert.match(sidePanelScript, /enabled: persistentSettings\.enabled/);
+  assert.match(sidePanelScript, /loopCount: persistentSettings\.loopCount/);
+  assert.match(sidePanelScript, /toStoredSettings\(settings\)/);
+});
+
 test("content messaging keeps completed count when side panel only requests status", async () => {
   const video = new FakeVideo();
   const runtime = createRuntime([video]);
@@ -42,7 +49,10 @@ test("target video selection fixes looping to the selected video", async () => {
   const second = new FakeVideo({ label: "Lesson" });
   const runtime = createRuntime([first, second]);
   const initial = runtime.send({ type: "MOVIE_LOOP_GET_STATUS" });
-  const selectedId = initial.videoList.find((video) => video.label === "Lesson").id;
+  assert.equal(initial.videoList[0].label, "Video 1 (0.0s / 12.0s)");
+  assert.equal(initial.videoList[1].label, "Video 2 (0.0s / 12.0s)");
+  assert.equal(initial.videoList.some((video) => /Preview|Lesson|movie\.mp4/.test(video.label)), false);
+  const selectedId = initial.videoList[1].id;
 
   runtime.send({ type: "MOVIE_LOOP_APPLY_SETTINGS", settings: { enabled: true, loopCount: 2, targetVideoId: selectedId } });
   first.dispatch("ended");
@@ -75,7 +85,17 @@ test("scanner includes videos inside open shadow roots", () => {
 
   const status = runtime.send({ type: "MOVIE_LOOP_GET_STATUS" });
   assert.equal(status.videos, 1);
-  assert.equal(status.videoList[0].label, "Shadow video");
+  assert.equal(status.videoList[0].label, "Video 1 (0.0s / 12.0s)");
+});
+
+test("scanner includes videos inside same-origin iframes", () => {
+  const frameVideo = new FakeVideo({ label: "Frame video" });
+  const iframe = { nodeType: 1, tagName: "IFRAME", contentDocument: { documentElement: new FakeRoot([frameVideo]), body: new FakeRoot([frameVideo]) }, addEventListener() {} };
+  const runtime = createRuntime([], [iframe]);
+
+  const status = runtime.send({ type: "MOVIE_LOOP_GET_STATUS" });
+  assert.equal(status.videos, 1);
+  assert.equal(status.videoList[0].label, "Video 1 (0.0s / 12.0s)");
 });
 
 function createRuntime(videos, nodes = []) {
@@ -144,7 +164,7 @@ class FakeRoot {
 
   querySelectorAll(selector) {
     if (selector === "video") return this.videos;
-    if (selector === "iframe") return [];
+    if (selector === "iframe") return this.nodes.filter((node) => String(node.tagName).toLowerCase() === "iframe");
     if (selector === "*") return this.nodes;
     return [];
   }

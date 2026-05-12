@@ -2,7 +2,7 @@
   "product": "movie-loop-tool",
   "result": "passed",
   "zipPath": "dist/movie-loop-tool-docs.zip",
-  "bytes": 32214,
+  "bytes": 57382,
   "includedRoots": [
     "README.md",
     "AGENTS.md",
@@ -31,6 +31,8 @@
   "entries": [
     "AGENTS.md",
     "docs/architecture.md",
+    "docs/codex-sessions.jsonl",
+    "docs/codex-sessions.md",
     "docs/design.md",
     "docs/manual-test.md",
     "docs/platform-runtime-gate.json",

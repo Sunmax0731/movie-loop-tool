@@ -13,12 +13,19 @@
     "Delivery": "A-",
     "Satisfaction": "A-"
   },
-  "manualTestStatus": "manual-steps-documented; chrome-load-extension-automated-by-runtime-gate",
-  "githubPublicationStatus": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; branch tracks origin/codex/movie-loop-tool-mvp",
+  "manualTestStatus": "manual-steps-documented; chrome-load-extension-passed-by-runtime-gate; implementation P0 closed; final visible Chrome UI Load unpacked and real-video checks tracked separately in GitHub #1 before distribution",
+  "githubPublicationStatus": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; default branch remains codex/movie-loop-tool-mvp; branch tracks origin/codex/movie-loop-tool-mvp; gh auth status is valid for Sunmax0731; current evidence is synchronized for commit and push",
+  "lastCheckedAt": "2026-05-12T20:30:00+09:00",
   "belowAMinus": [],
   "notes": [
-    "Quality is A- because unit tests, representative scenarios, runtime messaging tests, MV3 runtime gate, mojibake check, and docs ZIP generation pass.",
-    "Delivery is A- because repository docs, release checklist, QCDS metrics, local Issues/Tasks, generated evidence, and commit/push status are synchronized.",
-    "Satisfaction is A- because Side Panel startup no longer resets counts, replay failures are visible, and target video, A-B repeat, infinite mode, stop-after-current, toolbar action, and keyboard shortcut are implemented."
+    "Quality is A- because the 2026-05-12 20:30 JST npm test passes unit tests, representative scenarios, runtime messaging tests, ChromeExtension runtime gate with extensionLoad passed, mojibake check, docs ZIP generation, QCDS guard, and the 0012 implementation P0 closure evidence.",
+    "Cost is A- because there are no additional npm dependencies, stored values are limited to enabled and loopCount, and page-specific loop settings remain runtime-only.",
+    "Delivery is A- because repository docs, release checklist, QCDS metrics, local Issues/Tasks, generated evidence, GitHub publication state, and commit/push target state are synchronized.",
+    "Satisfaction is A- because Side Panel controls, quick toggle sync, target video selection, A-B repeat, loop modes, replay failure display, and privacy-preserving video labels are implemented and covered by npm test. Final visible real-site validation remains tracked by GitHub #1 before distribution."
+  ],
+  "followUps": [
+    "Run the documented Chrome UI Load unpacked and real-video manual checks from docs/manual-test.md immediately before distribution under GitHub #1.",
+    "If the ChromeExtension runtime gate fails or is blocked, cap Quality and Satisfaction at B+ or below and update docs/qcds-evaluation.md.",
+    "If the Git push fails, reopen 0009 or create a follow-up Issue with the exact failure."
   ]
 }

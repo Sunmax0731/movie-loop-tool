@@ -37,4 +37,4 @@
 
 ## 現在の実行状態
 
-Codex では Chrome UI の目視操作は人手確認として残します。自動検証として `npm test` 内で ChromeExtension runtime gate を実行し、MV3 manifest と Chrome の `--load-extension` 起動を確認します。
+Codex では Chrome UI の目視操作は人手確認として残します。自動検証として `npm test` 内で ChromeExtension runtime gate を実行し、MV3 manifest、必須ファイル、Side Panel control を確認します。2026-05-12 20:30 JST の `npm test` 再確認で Chrome の `--load-extension` 起動確認は `extensionLoad: passed` になりました。P0 の [`0012`](../Issues/0012-chrome-gui.md) は closed です。実動画ページ確認と visible Chrome UI の最終目視は配布直前に GitHub #1 で人手実施します。README、AGENTS、SKILL、manual-test と実装の整合性は 0011 で再確認済みです。

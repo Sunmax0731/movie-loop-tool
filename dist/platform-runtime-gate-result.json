@@ -18,10 +18,27 @@
     "contentMatches": [
       "http://*/*",
       "https://*/*"
-    ]
+    ],
+    "sidePanelControls": {
+      "status": "passed",
+      "requiredIds": [
+        "enabledToggle",
+        "loopCount",
+        "loopMode",
+        "targetVideo",
+        "segmentEnabled",
+        "segmentStart",
+        "segmentEnd",
+        "resetCounts",
+        "refreshStatus",
+        "lastError"
+      ]
+    }
   },
   "tempProfileCleanup": {
-    "status": "removed",
-    "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-5VJ6Gp"
+    "status": "deferred",
+    "path": "\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE",
+    "code": "EPERM",
+    "message": "EPERM, Permission denied: \\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE '\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-ViOmGE'"
   }
 }

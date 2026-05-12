@@ -173,6 +173,17 @@ document.querySelector("#decreaseCount").addEventListener("click", () => changeC
 document.querySelector("#increaseCount").addEventListener("click", () => changeCount(1));
 document.querySelector("#resetCounts").addEventListener("click", reset);
 document.querySelector("#refreshStatus").addEventListener("click", refresh);
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName !== "sync" || !changes[STORAGE_KEY]) return;
+  const runtimeSettings = settingsFromUi();
+  const persistentSettings = normalizeSettings(changes[STORAGE_KEY].newValue || DEFAULT_SETTINGS);
+  renderSettings({
+    ...runtimeSettings,
+    enabled: persistentSettings.enabled,
+    loopCount: persistentSettings.loopCount
+  });
+  void refresh();
+});
 
 (async () => {
   const stored = await storageGet(STORAGE_KEY);

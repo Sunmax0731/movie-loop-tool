@@ -174,20 +174,12 @@
     for (const video of trackedVideos.values()) resetState(video);
   }
 
+  function formatSeconds(value) {
+    return Number.isFinite(value) ? `${Math.max(0, value).toFixed(1)}s` : "unknown";
+  }
+
   function videoLabel(video, id) {
-    const title = video.getAttribute("aria-label") || video.getAttribute("title");
-    if (title) return title;
-    const source = video.currentSrc || video.src || "";
-    if (source) {
-      try {
-        const url = new URL(source, location.href);
-        const name = url.pathname.split("/").filter(Boolean).pop();
-        if (name) return name;
-      } catch {
-        return source.slice(0, 60);
-      }
-    }
-    return `Video ${id.replace("video-", "")}`;
+    return `Video ${id.replace("video-", "")} (${formatSeconds(video.currentTime)} / ${formatSeconds(video.duration)})`;
   }
 
   function status() {

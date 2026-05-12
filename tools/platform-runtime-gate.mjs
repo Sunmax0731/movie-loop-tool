@@ -54,8 +54,20 @@ function validateManifest(manifest, extensionRoot) {
   const contentMatches = (manifest.content_scripts || []).flatMap((script) => script.matches || []);
   const missingMatches = ["http://*/*", "https://*/*"].filter((match) => !contentMatches.includes(match));
   if (missingMatches.length) return { pass: false, reason: "content script web matches missing", missingMatches };
-  return { pass: true, requiredFiles, contentMatches };
+  const sidePanelControls = validateSidePanelControls(extensionRoot, manifest.side_panel?.default_path);
+  if (sidePanelControls.status !== "passed") return { pass: false, reason: "side panel controls missing", sidePanelControls };
+  return { pass: true, requiredFiles, contentMatches, sidePanelControls };
 }
+
+function validateSidePanelControls(extensionRoot, sidePanelPath) {
+  const htmlPath = path.join(extensionRoot, sidePanelPath || "");
+  if (!fs.existsSync(htmlPath)) return { status: "failed", missing: ["sidepanel html"] };
+  const html = fs.readFileSync(htmlPath, "utf8");
+  const requiredIds = ["enabledToggle", "loopCount", "loopMode", "targetVideo", "segmentEnabled", "segmentStart", "segmentEnd", "resetCounts", "refreshStatus", "lastError"];
+  const missing = requiredIds.filter((id) => !new RegExp(`id=["']${id}["']`).test(html));
+  return missing.length ? { status: "failed", missing } : { status: "passed", requiredIds };
+}
+
 function findChrome() { return ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", "C:/Program Files/Microsoft/Edge/Application/msedge.exe"].find((candidate) => fs.existsSync(candidate)); }
 function ok(extra = {}) { return { product: config.product, platformType: config.platformType, pass: true, method: "mv3-manifest-and-chrome-load-extension", manualTest: "not-run-by-codex", ...extra }; }
 function fail(reason, extra = {}) { return { product: config.product, platformType: config.platformType, pass: false, reason, manualTest: "not-run-by-codex", ...extra }; }
