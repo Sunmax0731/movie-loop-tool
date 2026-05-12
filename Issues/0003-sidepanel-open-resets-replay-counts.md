@@ -4,6 +4,7 @@
 - 優先度: P1
 - 種別: bug
 - 由来: ローカル調査
+- Phase: 04-implementation
 - 作成日: 2026-05-11
 - 完了日: 2026-05-11
 - QCDS: Quality, Satisfaction

@@ -5,6 +5,7 @@
 - 種別: release
 - 由来: local
 - Draft source: codex-cli
+- Phase: 06-release
 - 作成日: 2026-05-11
 - 中断日: 2026-05-11
 - 完了日: 2026-05-12

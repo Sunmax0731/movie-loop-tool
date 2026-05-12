@@ -83,3 +83,4 @@
 - [x] [P1] [Bug] Opening the Side Panel resets active replay counts [Issue](Issues/0020-bug-opening-the-side-panel-resets-active-replay-.md) [GitHub #3](https://github.com/Sunmax0731/movie-loop-tool/issues/3) [QCDS:Quality,Satisfaction]
 - [x] [P1] GitHub公開状態とQCDSリリース証跡の再同期 [Issue](Issues/0021-github-qcds.md) [GitHub #2](https://github.com/Sunmax0731/movie-loop-tool/issues/2) [QCDS:Quality,Delivery]
 - [x] [P2] Twitter動画でループ回数指定とループ再生が動作しない [Issue](Issues/0022-twitter.md) [QCDS:Quality]（未接続 content script の遅延注入と再送を追加し、2026-05-12 21:49 JST の `npm test` で確認）
+- [x] [P2] 未整理Issueのフェーズ整理 [Issue](Issues/0023-issue.md) [QCDS:Quality,Cost,Delivery]（0001-0009 に Phase を追加し、0023 に分類結果・曖昧事項・統合候補を記録。2026-05-13 JST の `npm test` で確認）

@@ -8,6 +8,7 @@
 - ファイル名は `0001-short-title.md` のように、連番と短い slug を使います。
 - 状態は `open`、`in-progress`、`blocked`、`closed` のいずれかにします。
 - 優先度は `P0` から `P4` を使います。
+- フェーズは `00-admin`、`01-requirements`、`02-specification`、`03-design`、`04-implementation`、`05-test`、`06-release` のいずれかを使います。
 - 具体作業は `Tasks/*.md` に分け、課題ファイルからリンクします。
 
 ## テンプレート
@@ -19,6 +20,7 @@
 - 優先度: P2
 - 種別: feature
 - 由来: local
+- Phase: 04-implementation
 - 作成日: YYYY-MM-DD
 - QCDS: Quality, Delivery
 - タスク: [Tasks/0001-example.md](../Tasks/0001-example.md)

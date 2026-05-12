@@ -4,6 +4,7 @@
 - 優先度: P4
 - 種別: chore
 - 由来: local
+- Phase: 00-admin
 - 作成日: 2026-05-11
 - 完了日: 2026-05-11
 - QCDS: Delivery

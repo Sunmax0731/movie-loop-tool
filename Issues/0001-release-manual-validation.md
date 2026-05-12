@@ -4,6 +4,7 @@
 - 優先度: P0
 - 種別: release
 - 由来: ローカル調査
+- Phase: 05-test
 - 作成日: 2026-05-11
 - 完了日: 2026-05-11
 - QCDS: Satisfaction, Delivery

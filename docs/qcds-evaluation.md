@@ -12,7 +12,7 @@ QCDS は次の完全一致値だけを使います。
 | --- | --- | --- |
 | Quality | A- | 単体テスト、代表シナリオ、runtime 近似テスト、文字化け検査、docs ZIP 生成、MV3 manifest / Side Panel control 静的検査、0011 のドキュメント実装整合性確認は通る。2026-05-12 21:49 JST の `npm test` 再確認で ChromeExtension runtime gate も `pass: true`、`extensionLoad: passed` になり、P0 の [`0012`](../Issues/0012-chrome-gui.md) と Twitter / X 直 mp4 対応の [`0022`](../Issues/0022-twitter.md) は closed。 |
 | Cost | A- | 追加 npm 依存なし。権限は `activeTab`、`storage`、`sidePanel` と通常 Web ページ match に限定している。runtime 設定は保存せず、保守範囲を抑えている。 |
-| Delivery | A- | README、AGENTS、SKILL、TODO、docs、local Issues/Tasks、docs ZIP、validation evidence は同期済み。`origin` は GitHub 公開リポジトリを指し、default branch は現状の `codex/movie-loop-tool-mvp` を維持する。2026-05-12 20:30 JST の `gh auth status` は有効で、今回更新分は Git 書き込み前確認後に commit / push する。 |
+| Delivery | A- | README、AGENTS、SKILL、TODO、docs、local Issues/Tasks、docs ZIP、validation evidence は同期済み。`origin` は GitHub 公開リポジトリを指し、default branch は現状の `codex/movie-loop-tool-mvp` を維持する。2026-05-13 JST に [`0023`](../Issues/0023-issue.md) で未整理 Issue のフェーズ分類を完了し、今回更新分は Git 書き込み前確認後に commit / push する。 |
 | Satisfaction | A- | Side Panel の起動だけで状態を壊さず、対象動画固定、A-B repeat、無限ループ、現在周回停止、toolbar / shortcut 操作、quick-toggle 時の Side Panel 同期、replay 失敗理由表示、未接続 content script の遅延注入を提供している。対象動画ラベルは title / URL / ファイル名を使わない。配布直前の visible Chrome UI / 実動画ページ目視は GitHub #1 に分離して残す。 |
 
 ## フォローアップ
@@ -72,3 +72,10 @@ ChromeExtension runtime gate は「MV3 manifest と Chrome の拡張読み込み
 - Issue 0022: `https://video.twimg.com/...mp4` 形式の直動画ページで起きる未接続 content script 経路に対し、Side Panel と toolbar action / keyboard command の遅延注入と再送を追加して closed にした。
 - Git staging: `git status --short --branch` と `.git/index.lock` の事前確認後、今回更新した release prep / QCDS 証跡を commit / push する。
 - GitHub CLI auth: 2026-05-12 20:30 JST の `gh auth status` で `Sunmax0731` の有効な認証を確認した。
+
+## Issue フェーズ整理 (0023 / 2026-05-13 JST)
+
+- `Issues/*.md` の `0001` から `0023` を対象に確認し、`Phase:` がなかった `0001` から `0009` にフェーズを追加した。
+- `Issues/README.md` に `Phase:` テンプレートと利用するフェーズ値を追加した。
+- `0023` に分類結果、曖昧事項、重複または統合候補を記録して closed にした。
+- GitHub Issue の現在状態は `gh issue list --repo Sunmax0731/movie-loop-tool --state all --limit 50 --json number,title,state,labels,createdAt,closedAt,url` で確認し、GitHub #1 は open、#2 から #10 は closed、labels は未設定だった。今回の分類はローカル `Issues/*.md` の `Phase:` を正とし、GitHub labels は変更していない。

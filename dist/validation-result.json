@@ -46,10 +46,8 @@
       }
     },
     "tempProfileCleanup": {
-      "status": "deferred",
-      "path": "\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-cRgNHA",
-      "code": "EPERM",
-      "message": "EPERM, Permission denied: \\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-cRgNHA '\\\\?\\E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-cRgNHA'"
+      "status": "removed",
+      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-sU6mgF"
     }
   },
   "representativeScenarios": 6,

@@ -2,7 +2,7 @@
   "product": "movie-loop-tool",
   "result": "passed",
   "zipPath": "dist/movie-loop-tool-docs.zip",
-  "bytes": 61910,
+  "bytes": 64458,
   "includedRoots": [
     "README.md",
     "AGENTS.md",
