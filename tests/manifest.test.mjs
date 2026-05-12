@@ -16,7 +16,7 @@ test("manifest exposes a keyboard command for no-panel toggling", () => {
 });
 
 test("manifest keeps permissions bounded for video loop behavior", () => {
-  assert.deepEqual(manifest.permissions.sort(), ["activeTab", "sidePanel", "storage"].sort());
+  assert.deepEqual(manifest.permissions.sort(), ["activeTab", "scripting", "sidePanel", "storage"].sort());
   assert.deepEqual(manifest.host_permissions.sort(), ["http://*/*", "https://*/*"].sort());
   assert.equal(manifest.permissions.includes("tabs"), false);
 });

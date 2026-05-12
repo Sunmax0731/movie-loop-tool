@@ -19,11 +19,12 @@ Chrome で開いている通常の Web ページ上の動画を、ユーザー�
 - R11: `video.play()` が失敗したリプレイは完了回数に加算せず、最後の失敗理由を UI に表示する。
 - R12: Toolbar action または `Alt+Shift+L` で、Side Panel を開かずに自動ループを切り替えられる。
 - R13: content script が入らない `chrome://` などのページでは対象外として表示する。
+- R14: 通常 Web ページで content script が未接続の場合、Side Panel または toolbar 操作時に content script を遅延注入してから設定を再送する。
 
 ## 非機能要件
 
 - N1: Manifest V3 で動作する。
-- N2: 権限は動画ループに必要な範囲へ限定する。
+- N2: 権限は動画ループに必要な範囲へ限定し、遅延注入には `scripting` のみを追加する。
 - N3: 永続保存する値は `enabled` と `loopCount` のみにする。
 - N4: ページ URL、動画 URL、タイトル、再生履歴、視聴内容を保存しない。
 - N5: 単体テスト、代表シナリオ、platform runtime gate、docs ZIP、mojibake 検査、QCDS guard を `npm test` で実行できる。

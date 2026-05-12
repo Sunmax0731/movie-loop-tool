@@ -1,4 +1,7 @@
 (() => {
+  if (globalThis.__movieLoopToolControllerLoaded) return;
+  globalThis.__movieLoopToolControllerLoaded = true;
+
   const STORAGE_KEY = "movieLoopTool";
   const DEFAULT_SETTINGS = Object.freeze({
     enabled: false,

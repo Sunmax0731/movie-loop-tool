@@ -82,3 +82,4 @@
 - [x] [P1] Replay失敗時の完了カウントとエラー表示を修正する [Issue](Issues/0019-replay.md) [GitHub #4](https://github.com/Sunmax0731/movie-loop-tool/issues/4) [QCDS:Quality,Satisfaction]
 - [x] [P1] [Bug] Opening the Side Panel resets active replay counts [Issue](Issues/0020-bug-opening-the-side-panel-resets-active-replay-.md) [GitHub #3](https://github.com/Sunmax0731/movie-loop-tool/issues/3) [QCDS:Quality,Satisfaction]
 - [x] [P1] GitHub公開状態とQCDSリリース証跡の再同期 [Issue](Issues/0021-github-qcds.md) [GitHub #2](https://github.com/Sunmax0731/movie-loop-tool/issues/2) [QCDS:Quality,Delivery]
+- [x] [P2] Twitter動画でループ回数指定とループ再生が動作しない [Issue](Issues/0022-twitter.md) [QCDS:Quality]（未接続 content script の遅延注入と再送を追加し、2026-05-12 21:49 JST の `npm test` で確認）

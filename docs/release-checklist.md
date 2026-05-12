@@ -26,6 +26,7 @@
 - [x] Chrome UI `Load unpacked` の人手確認手順を `docs/manual-test.md` に記載している。
 - [x] 実動画ページ確認手順を `docs/manual-test.md` に記載している。
 - [x] Toolbar action / keyboard shortcut の確認手順を記載している。
+- [x] Twitter / X の `video.twimg.com` 直 mp4 ページで、未接続 content script を遅延注入してから回数指定と自動ループを再送する確認手順を記載している。
 
 ## 公開
 
@@ -46,4 +47,4 @@
 
 ## リリース判定
 
-現在のリリース準備判定は ready after commit / push です。2026-05-12 20:30 JST の `npm test` は exit 0 で単体テスト 19 件、代表シナリオ 6 件、ChromeExtension runtime gate、docs ZIP、mojibake 検査、QCDS guard を通過し、Chrome 拡張読み込み確認は `extensionLoad: passed` になりました。`gh auth status` も `Sunmax0731` の有効な認証を返しています。配布直前の visible Chrome UI と実動画ページの最終目視は GitHub #1 と `docs/manual-test.md` の手順で人手実施します。
+現在のリリース準備判定は ready after commit / push です。2026-05-12 21:49 JST の `npm test` は exit 0 で単体テスト 21 件、代表シナリオ 6 件、ChromeExtension runtime gate、docs ZIP、mojibake 検査、QCDS guard を通過し、Chrome 拡張読み込み確認は `extensionLoad: passed` になりました。Issue 0022 の Twitter / X 直 mp4 ページ対策として、未接続 content script の遅延注入と再送を追加済みです。配布直前の visible Chrome UI と実動画ページの最終目視は GitHub #1 と `docs/manual-test.md` の手順で人手実施します。

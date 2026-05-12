@@ -46,7 +46,7 @@ function cleanupTempProfile(dir) {
 
 function validateManifest(manifest, extensionRoot) {
   if (manifest.manifest_version !== 3) return { pass: false, reason: "Chrome manifest is not MV3" };
-  const missingPermissions = ["activeTab", "storage", "sidePanel"].filter((permission) => !manifest.permissions?.includes(permission));
+  const missingPermissions = ["activeTab", "storage", "sidePanel", "scripting"].filter((permission) => !manifest.permissions?.includes(permission));
   if (missingPermissions.length) return { pass: false, reason: "required permissions missing", missingPermissions };
   const requiredFiles = [manifest.side_panel?.default_path, manifest.background?.service_worker, ...(manifest.content_scripts || []).flatMap((script) => script.js || [])].filter(Boolean);
   const missingFiles = requiredFiles.filter((file) => !fs.existsSync(path.join(extensionRoot, file)));

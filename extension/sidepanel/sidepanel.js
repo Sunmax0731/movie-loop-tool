@@ -59,13 +59,40 @@ function queryActiveTab() {
   return new Promise((resolve) => chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => resolve(tabs[0])));
 }
 
-function sendMessage(tabId, message) {
+function sendMessageOnce(tabId, message) {
   return new Promise((resolve, reject) => {
     chrome.tabs.sendMessage(tabId, message, (response) => {
       if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
       else resolve(response);
     });
   });
+}
+
+function isMissingReceiverError(error) {
+  return /Receiving end does not exist|Could not establish connection/i.test(error?.message || "");
+}
+
+function injectContentScript(tabId) {
+  return new Promise((resolve, reject) => {
+    if (!chrome.scripting?.executeScript) {
+      reject(new Error("content script injection unavailable"));
+      return;
+    }
+    chrome.scripting.executeScript({ target: { tabId }, files: ["content/video-loop-controller.js"] }, () => {
+      if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
+      else resolve();
+    });
+  });
+}
+
+async function sendMessage(tabId, message) {
+  try {
+    return await sendMessageOnce(tabId, message);
+  } catch (error) {
+    if (!isMissingReceiverError(error)) throw error;
+    await injectContentScript(tabId);
+    return sendMessageOnce(tabId, message);
+  }
 }
 
 function settingsFromUi() {

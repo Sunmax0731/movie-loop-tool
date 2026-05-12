@@ -37,8 +37,22 @@ async function toggleAutoLoop(tab) {
   await chrome.storage.sync.set({ [STORAGE_KEY]: next });
   await updateBadge(next);
   if (tab?.id) {
-    await ignoreApiError(chrome.tabs.sendMessage(tab.id, { type: "MOVIE_LOOP_APPLY_SETTINGS", settings: next }));
+    await sendMessageWithInjection(tab.id, { type: "MOVIE_LOOP_APPLY_SETTINGS", settings: next });
   }
+}
+
+async function sendMessageWithInjection(tabId, message) {
+  try {
+    await chrome.tabs.sendMessage(tabId, message);
+  } catch (error) {
+    if (!isMissingReceiverError(error)) return;
+    await ignoreApiError(chrome.scripting?.executeScript({ target: { tabId }, files: ["content/video-loop-controller.js"] }));
+    await ignoreApiError(chrome.tabs.sendMessage(tabId, message));
+  }
+}
+
+function isMissingReceiverError(error) {
+  return /Receiving end does not exist|Could not establish connection/i.test(error?.message || "");
 }
 
 async function updateBadge(settings) {

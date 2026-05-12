@@ -35,3 +35,7 @@ Side Panel は小さな操作面として扱い、現在状態の確認と設定
 ## 操作の分離
 
 Side Panel 起動時は保存済み設定を表示し、active tab へ `MOVIE_LOOP_GET_STATUS` を送るだけにします。設定の保存と `MOVIE_LOOP_APPLY_SETTINGS` は、ユーザーが UI を変更したときだけ実行します。
+
+## 未接続タブの扱い
+
+通常 Web ページで message の受信側がない場合は、Side Panel が content script を遅延注入してから同じ操作を再送します。`chrome://` など注入できないページは `Unsupported page` のまま扱います。

@@ -10,6 +10,7 @@
 - 複数動画ページでは `All detected videos` または検出済み動画の 1 つを対象に固定できます。
 - A-B repeat で学習・確認用の区間リピートを設定できます。
 - ページ上に最初から存在する `<video>`、後から追加された `<video>`、同一オリジン iframe 内、open Shadow DOM 内の動画を検出します。
+- 既に開いていた `https://video.twimg.com/...mp4` 形式の直動画ページなど、content script が未接続の通常 Web ページには Side Panel / toolbar 操作時に content script を遅延注入してから設定を反映します。
 - Toolbar action または `Alt+Shift+L` で、Side Panel を開かずに自動ループを切り替えられます。
 - 永続保存する値は `enabled` と `loopCount` だけです。対象動画、A-B 区間、ループモードは現在ページの runtime 設定として扱い、URL、動画 URL、タイトル、再生履歴、視聴内容は保存しません。
 

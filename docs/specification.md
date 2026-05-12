@@ -43,9 +43,11 @@
 - `Last replay error`: 最後に失敗した `play()` の理由。
 - `Reset count`: 現在ページの完了済み回数をリセットする。
 - `Refresh`: 現在タブから状態を再取得する。
+- active tab に受信側がない場合は `content/video-loop-controller.js` を `chrome.scripting.executeScript` で遅延注入し、同じ操作を再送する。
 
 ## Shortcut 仕様
 
 - Toolbar action click は現在タブの `enabled` を切り替える。
 - `Alt+Shift+L` は現在タブの `enabled` を切り替える。
 - 切り替え結果は `chrome.storage.sync` に保存し、可能な場合は現在タブへ即時送信する。
+- 現在タブに受信側がない通常 Web ページでは content script を遅延注入してから切り替え結果を送信する。

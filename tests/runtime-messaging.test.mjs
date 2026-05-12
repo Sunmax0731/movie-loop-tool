@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 const contentScript = fs.readFileSync("extension/content/video-loop-controller.js", "utf8");
 const sidePanelScript = fs.readFileSync("extension/sidepanel/sidepanel.js", "utf8");
+const serviceWorkerScript = fs.readFileSync("extension/background/service-worker.js", "utf8");
 
 test("side panel startup refreshes status without applying settings", () => {
   assert.match(sidePanelScript, /await refresh\(\);/);
@@ -16,6 +17,20 @@ test("side panel observes quick-toggle storage changes without persisting runtim
   assert.match(sidePanelScript, /enabled: persistentSettings\.enabled/);
   assert.match(sidePanelScript, /loopCount: persistentSettings\.loopCount/);
   assert.match(sidePanelScript, /toStoredSettings\(settings\)/);
+});
+
+test("side panel and quick toggle inject the content script before retrying disconnected tabs", () => {
+  assert.match(sidePanelScript, /isMissingReceiverError/);
+  assert.match(sidePanelScript, /chrome\.scripting\?\.executeScript/);
+  assert.match(sidePanelScript, /files: \["content\/video-loop-controller\.js"\]/);
+  assert.match(serviceWorkerScript, /sendMessageWithInjection/);
+  assert.match(serviceWorkerScript, /chrome\.scripting\?\.executeScript/);
+  assert.match(contentScript, /__movieLoopToolControllerLoaded/);
+});
+
+test("content script does not register duplicate listeners when injected twice", () => {
+  const runtime = createRuntime([new FakeVideo()], [], { runs: 2 });
+  assert.equal(runtime.messageListenerCount, 1);
 });
 
 test("content messaging keeps completed count when side panel only requests status", async () => {
@@ -98,7 +113,7 @@ test("scanner includes videos inside same-origin iframes", () => {
   assert.equal(status.videoList[0].label, "Video 1 (0.0s / 12.0s)");
 });
 
-function createRuntime(videos, nodes = []) {
+function createRuntime(videos, nodes = [], options = {}) {
   const messageListeners = [];
   const storageChangeListeners = [];
   const sandbox = {
@@ -138,9 +153,12 @@ function createRuntime(videos, nodes = []) {
     }
   };
   sandbox.document.querySelectorAll = (selector) => sandbox.document.documentElement.querySelectorAll(selector);
-  vm.runInNewContext(contentScript, sandbox, { filename: "video-loop-controller.js" });
+  for (let i = 0; i < (options.runs || 1); i += 1) {
+    vm.runInNewContext(contentScript, sandbox, { filename: "video-loop-controller.js" });
+  }
   assert.equal(messageListeners.length, 1);
   return {
+    messageListenerCount: messageListeners.length,
     send(message) {
       let response;
       messageListeners[0](message, {}, (value) => {

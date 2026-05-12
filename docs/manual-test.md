@@ -26,6 +26,7 @@
 15. `Reset count` と `Refresh` がエラーなく動作することを確認する。
 16. `chrome://extensions` などの対象外ページで Side Panel が `Unsupported page` を表示することを確認する。
 17. Toolbar action または `Alt+Shift+L` で Side Panel を開かずに `Auto loop` を切り替えられることを確認する。
+18. `https://video.twimg.com/...mp4` 形式の直動画ページを開き、拡張の再読み込み後または既に開いていたタブでも `Additional replays` を `2` に設定でき、動画終了後に追加で 2 回再生されることを確認する。
 
 ## 期待結果
 
@@ -33,6 +34,7 @@
 - Side Panel を開いただけでは完了済みリプレイ回数がリセットされない。
 - `video.play()` が失敗した場合、完了済み回数は増えず、失敗理由が表示される。
 - A-B repeat、対象動画固定、無限ループ、現在周回停止が動作する。
+- Twitter / X の直 mp4 動画ページでも、未接続 content script が遅延注入されてループ回数指定と自動ループが動作する。
 - 保存データは `enabled` と `loopCount` のみに留まる。
 
 ## 現在の実行状態
