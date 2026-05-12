@@ -32,12 +32,12 @@
 | `0003-sidepanel-open-resets-replay-counts.md` | `04-implementation` | Side Panel 起動時の保存適用と再生回数 reset を分離する実装修正。 |
 | `0004-replay-failure-counted-completed.md` | `04-implementation` | `video.play()` 失敗時のカウント処理と UI 表示を修正する実装修正。 |
 | `0005-runtime-integration-coverage-gap.md` | `05-test` | content script と Side Panel messaging の runtime 近似テストを追加する作業。 |
-| `0006-testissue.md` | `00-admin` | ローカル課題テンプレート確認用の管理作業で、製品機能ではない。 |
+| `0006-testissue.md` | `05-test` | ローカル課題テンプレート確認用の検査作業で、製品機能ではない。 |
 | `0007-p0-p3-todo.md` | `04-implementation` | P0-P3 の機能追加と不具合修正をまとめて処理した実装フェーズの集約課題。 |
 | `0008-qcds.md` | `05-test` | QCDS 評価値と guard 証跡を検査・記録する品質評価作業。 |
 | `0009-issue.md` | `06-release` | リリース準備、公開状態、release checklist、push 対象同期を扱う作業。 |
 
-確認後、`0010` から `0023` は既に `Phase:` を持っていることを確認した。`Issues/README.md` のテンプレートにも `Phase:` と利用するフェーズ値を追加した。
+確認後、`0010` から `0023` は既に `Phase:` を持っていることを確認した。`Issues/README.md` のテンプレートにも `Phase:` と利用するフェーズ値を追加した。追加確認で VS Code の Work Items Tree は `TODO.md` の checklist 行だけからも phase を判定することが分かったため、`TODO.md` の未整理扱いだった完了済み checklist に `[Phase: ...]` を追記し、`00-inbox` が残らない状態にした。
 
 ## Ambiguous Items
 
@@ -61,4 +61,5 @@
 ## Notes
 
 - GitHub Issue の現在状態は 2026-05-13 JST に `gh issue list --repo Sunmax0731/movie-loop-tool --state all --limit 50 --json number,title,state,labels,createdAt,closedAt,url` で確認した。GitHub #1 は open、#2 から #10 は closed、GitHub labels は未設定だった。今回のフェーズ分類はローカル `Issues/*.md` の `Phase:` を正とし、GitHub labels は変更していない。
+- Work Items Tree の再現確認は `codex-friendly-project-starter` の `scanWorkItems()` を使い、`00-inbox` が `total=0` になることを確認した。
 - 検証: `npm test`

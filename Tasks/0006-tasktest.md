@@ -4,7 +4,7 @@
 - 優先度: P4
 - 種別: chore
 - 由来: local
-- Phase: 00-admin
+- Phase: 05-test
 - Issue: [Issues/0006-testissue.md](../Issues/0006-testissue.md)
 - QCDS: Delivery
 

@@ -15,9 +15,9 @@
 
 ## 今回発見した作業
 
-- [x] README、AGENTS、TODO、docs の文字化けを正式な UTF-8 文書に直す。
-- [x] Side Panel の UI 文言と HTML 属性を整理する。
-- [x] `tools/mojibake-check.mjs` の検査パターンを維持する。
+- [x] README、AGENTS、TODO、docs の文字化けを正式な UTF-8 文書に直す。[Phase: 05-test]
+- [x] Side Panel の UI 文言と HTML 属性を整理する。[Phase: 04-implementation]
+- [x] `tools/mojibake-check.mjs` の検査パターンを維持する。[Phase: 05-test]
 - [x] sandbox 環境の `spawn EPERM` を避けるため unit test runner を同一プロセス実行へ切り替える。
 - [x] sandbox 環境の `spawn EPERM` を避けるため docs ZIP 生成を純 Node 実装へ切り替える。
 - [x] `docs/qcds-evaluation.md`、`docs/manual-test.md`、`docs/release-checklist.md` を更新する。
@@ -38,13 +38,13 @@
 ## ローカル課題ファイル化 (2026-05-11)
 
 - [x] `Issues/` と `Tasks/` にリリース前の不一致・検証不足・証跡不整合を起票する。
-- [x] 起票したローカル課題と GitHub Issue / TODO の対応関係を明記する。
+- [x] 起票したローカル課題と GitHub Issue / TODO の対応関係を明記する。[Phase: 06-release]
 - [x] 起票後に `npm test` で既存 gate が維持されることを確認する。
 
 ## ドキュメント日本語化 (2026-05-11)
 
-- [x] root、`docs/`、`Issues/`、`Tasks/` の Markdown ドキュメントを文字化けのない日本語へ統一する。
-- [x] 課題 / タスクテンプレートの項目名も日本語表記にそろえる。
+- [x] root、`docs/`、`Issues/`、`Tasks/` の Markdown ドキュメントを文字化けのない日本語へ統一する。[Phase: 05-test]
+- [x] 課題 / タスクテンプレートの項目名も日本語表記にそろえる。[Phase: 05-test]
 - [x] 日本語化後に `npm test` と mojibake 検査を通す。
 
 ## 実装・検証
@@ -68,19 +68,19 @@
 - [x] GitHub CLI 認証または push 用認証を更新する。2026-05-12 19:55 JST の `gh auth status` で `Sunmax0731` の有効な認証を確認した。[Issue](Issues/0009-issue.md) [Task](Tasks/0009-issue.md)
 
 ## Work Items
-- [x] [P2] QCDS評価の実施 [Issue](Issues/0008-qcds.md) [Task](Tasks/0008-qcds.md) [QCDS:Quality,Cost,Delivery,Satisfaction]
-- [x] [P2] リリース準備 [Issue](Issues/0009-issue.md) [Task](Tasks/0009-issue.md) [QCDS:Quality,Delivery]（runtime gate passed / commit・push 対象として同期）
-- [x] [P2] ドキュメント実装整合性確認 [Issue](Issues/0010-issue.md) [Task](Tasks/0010-issue.md) [QCDS:Quality]
-- [x] [P2] ドキュメント実装整合性確認 [Issue](Issues/0011-issue.md) [Task](Tasks/0011-issue.md) [QCDS:Quality,Satisfaction]
-- [x] [P0] Chrome手動確認でループ再生とGUIが機能しない [Issue](Issues/0012-chrome-gui.md) [QCDS:Quality,Satisfaction]
-- [x] [P2] クイック操作とキーボードショートカットを追加する [Issue](Issues/0013-issue.md) [GitHub #10](https://github.com/Sunmax0731/movie-loop-tool/issues/10) [QCDS:Quality,Satisfaction]
-- [x] [P2] [Feature] Expand video detection for iframe, shadow DOM, and SPA scenarios [Issue](Issues/0014-feature-expand-video-detection-for-iframe-shadow.md) [GitHub #9](https://github.com/Sunmax0731/movie-loop-tool/issues/9) [QCDS:Quality,Satisfaction]
-- [x] [P1] [Feature] Add loop modes for infinite loop and stop-after-current [Issue](Issues/0015-feature-add-loop-modes-for-infinite-loop-and-sto.md) [GitHub #8](https://github.com/Sunmax0731/movie-loop-tool/issues/8) [QCDS:Quality,Delivery,Satisfaction]
-- [x] [P1] [Feature] Add A-B range repeat for study and review workflows [Issue](Issues/0016-feature-add-a-b-range-repeat-for-study-and-revie.md) [GitHub #7](https://github.com/Sunmax0731/movie-loop-tool/issues/7) [QCDS:Quality,Satisfaction]
-- [x] [P1] [Feature] Select and lock the target video on pages with multiple videos [Issue](Issues/0017-feature-select-and-lock-the-target-video-on-page.md) [GitHub #6](https://github.com/Sunmax0731/movie-loop-tool/issues/6) [QCDS:Quality,Satisfaction]
-- [x] [P2] Runtime-like integration coverage for content script and Side Panel messaging [Issue](Issues/0018-runtime-like-integration-coverage-for-content-sc.md) [GitHub #5](https://github.com/Sunmax0731/movie-loop-tool/issues/5) [QCDS:Quality,Cost]
-- [x] [P1] Replay失敗時の完了カウントとエラー表示を修正する [Issue](Issues/0019-replay.md) [GitHub #4](https://github.com/Sunmax0731/movie-loop-tool/issues/4) [QCDS:Quality,Satisfaction]
-- [x] [P1] [Bug] Opening the Side Panel resets active replay counts [Issue](Issues/0020-bug-opening-the-side-panel-resets-active-replay-.md) [GitHub #3](https://github.com/Sunmax0731/movie-loop-tool/issues/3) [QCDS:Quality,Satisfaction]
-- [x] [P1] GitHub公開状態とQCDSリリース証跡の再同期 [Issue](Issues/0021-github-qcds.md) [GitHub #2](https://github.com/Sunmax0731/movie-loop-tool/issues/2) [QCDS:Quality,Delivery]
-- [x] [P2] Twitter動画でループ回数指定とループ再生が動作しない [Issue](Issues/0022-twitter.md) [QCDS:Quality]（未接続 content script の遅延注入と再送を追加し、2026-05-12 21:49 JST の `npm test` で確認）
-- [x] [P2] 未整理Issueのフェーズ整理 [Issue](Issues/0023-issue.md) [QCDS:Quality,Cost,Delivery]（0001-0009 に Phase を追加し、0023 に分類結果・曖昧事項・統合候補を記録。2026-05-13 JST の `npm test` で確認）
+- [x] [P2] QCDS評価の実施 [Issue](Issues/0008-qcds.md) [Task](Tasks/0008-qcds.md) [Phase: 05-test] [QCDS:Quality,Cost,Delivery,Satisfaction]
+- [x] [P2] リリース準備 [Issue](Issues/0009-issue.md) [Task](Tasks/0009-issue.md) [Phase: 06-release] [QCDS:Quality,Delivery]（runtime gate passed / commit・push 対象として同期）
+- [x] [P2] ドキュメント実装整合性確認 [Issue](Issues/0010-issue.md) [Task](Tasks/0010-issue.md) [Phase: 05-test] [QCDS:Quality]
+- [x] [P2] ドキュメント実装整合性確認 [Issue](Issues/0011-issue.md) [Task](Tasks/0011-issue.md) [Phase: 05-test] [QCDS:Quality,Satisfaction]
+- [x] [P0] Chrome手動確認でループ再生とGUIが機能しない [Issue](Issues/0012-chrome-gui.md) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P2] クイック操作とキーボードショートカットを追加する [Issue](Issues/0013-issue.md) [GitHub #10](https://github.com/Sunmax0731/movie-loop-tool/issues/10) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P2] [Feature] Expand video detection for iframe, shadow DOM, and SPA scenarios [Issue](Issues/0014-feature-expand-video-detection-for-iframe-shadow.md) [GitHub #9](https://github.com/Sunmax0731/movie-loop-tool/issues/9) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P1] [Feature] Add loop modes for infinite loop and stop-after-current [Issue](Issues/0015-feature-add-loop-modes-for-infinite-loop-and-sto.md) [GitHub #8](https://github.com/Sunmax0731/movie-loop-tool/issues/8) [Phase: 04-implementation] [QCDS:Quality,Delivery,Satisfaction]
+- [x] [P1] [Feature] Add A-B range repeat for study and review workflows [Issue](Issues/0016-feature-add-a-b-range-repeat-for-study-and-revie.md) [GitHub #7](https://github.com/Sunmax0731/movie-loop-tool/issues/7) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P1] [Feature] Select and lock the target video on pages with multiple videos [Issue](Issues/0017-feature-select-and-lock-the-target-video-on-page.md) [GitHub #6](https://github.com/Sunmax0731/movie-loop-tool/issues/6) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P2] Runtime-like integration coverage for content script and Side Panel messaging [Issue](Issues/0018-runtime-like-integration-coverage-for-content-sc.md) [GitHub #5](https://github.com/Sunmax0731/movie-loop-tool/issues/5) [Phase: 05-test] [QCDS:Quality,Cost]
+- [x] [P1] Replay失敗時の完了カウントとエラー表示を修正する [Issue](Issues/0019-replay.md) [GitHub #4](https://github.com/Sunmax0731/movie-loop-tool/issues/4) [Phase: 04-implementation] [QCDS:Quality,Satisfaction]
+- [x] [P1] [Bug] Opening the Side Panel resets active replay counts [Issue](Issues/0020-bug-opening-the-side-panel-resets-active-replay-.md) [GitHub #3](https://github.com/Sunmax0731/movie-loop-tool/issues/3) [Phase: 05-test] [QCDS:Quality,Satisfaction]
+- [x] [P1] GitHub公開状態とQCDSリリース証跡の再同期 [Issue](Issues/0021-github-qcds.md) [GitHub #2](https://github.com/Sunmax0731/movie-loop-tool/issues/2) [Phase: 06-release] [QCDS:Quality,Delivery]
+- [x] [P2] Twitter動画でループ回数指定とループ再生が動作しない [Issue](Issues/0022-twitter.md) [Phase: 05-test] [QCDS:Quality]（未接続 content script の遅延注入と再送を追加し、2026-05-12 21:49 JST の `npm test` で確認）
+- [x] [P2] 未整理Issueのフェーズ整理 [Issue](Issues/0023-issue.md) [Phase: 04-implementation] [QCDS:Quality,Cost,Delivery]（0001-0009 に Phase を追加し、0023 に分類結果・曖昧事項・統合候補を記録。2026-05-13 JST の `npm test` で確認）

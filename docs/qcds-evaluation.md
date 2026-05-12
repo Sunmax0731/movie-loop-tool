@@ -79,3 +79,4 @@ ChromeExtension runtime gate は「MV3 manifest と Chrome の拡張読み込み
 - `Issues/README.md` に `Phase:` テンプレートと利用するフェーズ値を追加した。
 - `0023` に分類結果、曖昧事項、重複または統合候補を記録して closed にした。
 - GitHub Issue の現在状態は `gh issue list --repo Sunmax0731/movie-loop-tool --state all --limit 50 --json number,title,state,labels,createdAt,closedAt,url` で確認し、GitHub #1 は open、#2 から #10 は closed、labels は未設定だった。今回の分類はローカル `Issues/*.md` の `Phase:` を正とし、GitHub labels は変更していない。
+- VS Code の Work Items Tree では `TODO.md` の checklist 行も個別 Work Item として phase 判定されるため、完了済み checklist 行に `[Phase: ...]` を追記し、`scanWorkItems()` で `00-inbox` が `total=0` になることを確認した。

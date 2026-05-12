@@ -47,7 +47,7 @@
     },
     "tempProfileCleanup": {
       "status": "removed",
-      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-sU6mgF"
+      "path": "E:\\DevEnv\\Temp\\User\\movie-loop-tool-chrome-icOlOd"
     }
   },
   "representativeScenarios": 6,
@@ -55,5 +55,5 @@
   "manualTest": "manual-steps-documented; chrome-load-extension-passed-by-runtime-gate; implementation P0 closed; Twitter/X direct mp4 disconnected-content-script case covered by delayed injection; final visible Chrome UI Load unpacked and real-video checks tracked separately in GitHub #1 before distribution",
   "githubPublication": "origin-configured: https://github.com/Sunmax0731/movie-loop-tool.git; default branch remains codex/movie-loop-tool-mvp; branch tracks origin/codex/movie-loop-tool-mvp; gh auth status is valid for Sunmax0731; current evidence is synchronized for commit and push",
   "releaseReadiness": "ready-after-manual-test",
-  "generatedAt": "2026-05-12T21:48:20.951Z"
+  "generatedAt": "2026-05-12T22:06:01.182Z"
 }
